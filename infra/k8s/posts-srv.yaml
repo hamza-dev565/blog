@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: posts-srv
+
+spec: # customize how this service will behave
+  type: NodePort # we want to create a nodeport service
+  selector: # will select the pod to expose to outside world.
+    app: posts # we used labels in deployments to define this pod.
+  
+  ports: # if we look into the index.js file the server is listening on port 4000.
+  - name: posts #also see the picture in docs for further clarification
+    protocol: TCP
+    port: 4000 #nodeport service has its own port which will be this one. will redirect to targetPort.
+    targetPort: 4000 #it is the pod port.
+    

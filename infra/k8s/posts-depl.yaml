@@ -1,0 +1,28 @@
+apiVersion: apps/v1 # version of api
+kind: Deployment   # specifies the kind of kuberenetes resource being defined here it is deployment
+metadata:          #contains meta deta about deployment including its name
+  name: posts-depl  # defines the name of depliyment
+
+spec:              # defines the desired state of deployment
+  replicas: 1      # specifies the number of instances to run or replicas
+  selector:        # deines how the deployment finds  which pods to manage
+    matchLabels:   # specifies the deployment should manage pods with the label app:posts
+      app: posts  #
+
+  template:        # describes the pod template that will be used to create the new pods managed by the deployments
+    metadata:      # contains the metadata for the pod template
+      labels:      # assigns labels to the pods created by this template
+        app: posts # 
+    spec:          # describes the specification of the pods that will be created 
+      containers:  # specifies the containers that should be run in the pod
+        - name: posts # the name of container which is posts
+          image: hamza/posts:0.0.5 #<<<<<<<<------ just changed to latest
+                        #^
+                        #|
+                        #|
+                        #|
+                        #|
+                        #|
+                        #|
+                        #|
+                        #|
